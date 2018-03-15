@@ -11,3 +11,12 @@ RUN yum install -y supervisor dialog git iproute net-tools newt procps-ng bc bin
 RUN yum clean all
 RUN rm -rf /var/cache/yum
 
+ADD start.sh /sbin/start.sh
+ADD docker-install.sh /tmp/docker-install.sh
+ADD dnsmasq.ini /etc/supervisor.d/dnsmasq.ini
+ADD lighttpd.ini /etc/supervisor.d/lighttpd.ini
+ADD supervisord.conf /etc/supervisord.conf
+
+EXPOSE 53 80
+
+ENTRYPOINT ["/sbin/start.sh"]
