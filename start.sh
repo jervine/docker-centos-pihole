@@ -18,5 +18,13 @@ if [ ! -f "${setup}" ]; then
   touch $setup
 fi
 
+touch /var/log/pihole-FTL.log /run/pihole-FTL.pid /run/pihole-FTL.port /var/log/pihole.log
+mkdir -p /var/run/pihole
+mkdir -p /var/log/pihole
+chown pihole:pihole /var/run/pihole /var/log/pihole
+rm /var/run/pihole/FTL.sock
+chown pihole:pihole /var/log/pihole-FTL.log /run/pihole-FTL.pid /run/pihole-FTL.port /etc/pihole
+chmod 0644 /var/log/pihole-FTL.log /run/pihole-FTL.pid /run/pihole-FTL.port /var/log/pihole.log
+
 ## Start up pi-hole daemon via supervisord
 /usr/bin/supervisord -n -c /etc/supervisord.conf
