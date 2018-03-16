@@ -16,6 +16,7 @@ ADD docker-install.sh /tmp/docker-install.sh
 ADD dnsmasq.ini /etc/supervisor.d/dnsmasq.ini
 ADD lighttpd.ini /etc/supervisor.d/lighttpd.ini
 ADD supervisord.conf /etc/supervisord.conf
+RUN chmod 755 /sbin/start.sh
 
 EXPOSE 53 80
 
