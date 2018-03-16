@@ -11,6 +11,9 @@ setup=/config/.setup
 if [ ! -f "${setup}" ]; then
   rm -f /etc/localtime
   cp /usr/share/zoneinfo/$TZ /etc/localtime
+  cd /tmp
+  chmod 755 docker-install.sh
+  /tmp/docker-install.sh
   sed -i -e 's/#user=/user=root/g' /etc/dnsmasq.conf
   touch $setup
 fi
